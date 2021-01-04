@@ -1,10 +1,15 @@
 package core.entity;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Stream {
+@Where(clause = "deleted_at is null")
+@SQLDelete(sql = "UPDATE stream SET deleted_at=current_time() WHERE id=?")
+public class Stream extends  BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,7 +18,7 @@ public class Stream {
     private String name;
 
 
-    @ManyToMany(targetEntity = Keyword.class,cascade = CascadeType.ALL)
+    @ManyToMany(targetEntity = Keyword.class,cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "stream_keyword",
             joinColumns = { @JoinColumn(name = "stream_id") },

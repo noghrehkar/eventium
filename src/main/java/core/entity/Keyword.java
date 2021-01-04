@@ -1,16 +1,24 @@
 package core.entity;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 import java.util.Set;
 
+
+
 @Entity
-public class Keyword {
+@Where(clause = "deleted_at is null")
+@SQLDelete(sql = "UPDATE keyword SET deleted_at=current_time() WHERE id=?")
+public class Keyword extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String body;
+    private String text;
 
     @ManyToMany(mappedBy = "keywords")
     private Set<Post> posts;
@@ -26,12 +34,12 @@ public class Keyword {
         this.id = id;
     }
 
-    public String getBody() {
-        return body;
+    public String getText() {
+        return text;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public void setText(String body) {
+        this.text = body;
     }
 
     public Set<Post> getPosts() {

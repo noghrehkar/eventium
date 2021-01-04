@@ -4,8 +4,10 @@ import core.entity.Source;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface SourceRepository extends PagingAndSortingRepository<Source,Long> {
 
-     Source findByName(String name);
+     Optional<Source> findByName(String name);
 }

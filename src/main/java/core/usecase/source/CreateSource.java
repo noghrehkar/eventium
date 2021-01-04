@@ -1,4 +1,4 @@
-package core.usecase.admin.source;
+package core.usecase.source;
 
 import core.entity.Source;
 import core.exception.SourceExist;
@@ -15,13 +15,15 @@ public class CreateSource {
     @Autowired
     private CheckSourceExist checkSourceExist;
 
+
+
     public Source createIfNotExist(Source source) throws SourceExist{
 
-            if (checkSourceExist.isSourceExist(source) == false) {
+            if (checkSourceExist.isSourceExistByName(source) == false) {
                Source createdSource= sourceRepository.save(source);
                 return createdSource;
             }else{
-                throw new SourceExist("Source Exist");
+                throw new SourceExist();
             }
     }
 

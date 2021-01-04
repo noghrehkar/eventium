@@ -1,10 +1,15 @@
 package core.entity;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Post {
+@Where(clause = "deleted_at is null")
+@SQLDelete(sql = "UPDATE post SET deleted_at=current_time() WHERE id=?")
+public class Post extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,13 +17,16 @@ public class Post {
 
     private String body;
 
+    private String uuid;
+
     @ManyToOne
     private SocialAccount socialAccount;
 
     @ManyToOne
     private Source source;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+
+    @ManyToMany
     @JoinTable(
             name = "post_stream",
             joinColumns = { @JoinColumn(name = "post_id") },
@@ -26,7 +34,7 @@ public class Post {
     )
     private Set<Stream> streams;
 
-    @ManyToMany(targetEntity = Keyword.class, cascade = CascadeType.ALL)
+    @ManyToMany(targetEntity = Keyword.class)
     @JoinTable(
             name = "post_keyword",
             joinColumns = { @JoinColumn(name = "post_id") },
@@ -82,5 +90,11 @@ public class Post {
         this.keywords = keywords;
     }
 
+    public String getUuid() {
+        return uuid;
+    }
 
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 }

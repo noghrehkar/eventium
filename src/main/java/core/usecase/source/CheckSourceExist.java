@@ -1,4 +1,4 @@
-package core.usecase.admin.source;
+package core.usecase.source;
 
 import core.entity.Source;
 import core.repository.SourceRepository;
@@ -11,12 +11,19 @@ public class CheckSourceExist {
     @Autowired
     private SourceRepository sourceRepository;
 
-    public boolean isSourceExist(Source source) {
-        if (sourceRepository.findByName(source.getName()) == null) {
+    public boolean isSourceExistByName(Source source) {
+        if (sourceRepository.findByName(source.getName()).isEmpty()) {
             return false;
         } else {
             return true;
         }
+    }
 
+    public boolean isSourceExistById(long id) {
+        if (sourceRepository.findById(id).isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

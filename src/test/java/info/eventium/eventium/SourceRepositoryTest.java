@@ -29,7 +29,7 @@ public class SourceRepositoryTest {
         entityManager.persist(source);
         entityManager.flush();
 
-        Source found = sourceRepository.findByName("twitter");
+        Source found = sourceRepository.findByName("twitter").get();
         assertThat(found).isNotNull();
     }
 }
