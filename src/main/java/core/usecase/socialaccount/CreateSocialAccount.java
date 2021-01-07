@@ -17,7 +17,7 @@ public class CreateSocialAccount {
     private CheckSocialAccountExist checkSocialAccountExist;
 
     public SocialAccount createSocialAccount(SocialAccount socialAccount)  {
-        if(checkSocialAccountExist.isSocialAccountExist(socialAccount)==false) {
+        if(checkSocialAccountExist.isSocialAccountExistBySourceAndUuid(socialAccount)==false) {
             SocialAccount createdSocialAccount = socialAccountRepository.save(socialAccount);
             return createdSocialAccount;
         }else{

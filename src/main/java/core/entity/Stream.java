@@ -18,7 +18,7 @@ public class Stream extends  BaseEntity {
     private String name;
 
 
-    @ManyToMany(targetEntity = Keyword.class,cascade = CascadeType.PERSIST)
+    @ManyToMany(targetEntity = Keyword.class,cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
     @JoinTable(
             name = "stream_keyword",
             joinColumns = { @JoinColumn(name = "stream_id") },

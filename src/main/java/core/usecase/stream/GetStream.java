@@ -1,5 +1,6 @@
 package core.usecase.stream;
 
+import core.entity.Source;
 import core.entity.Stream;
 import core.repository.StreamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,14 @@ public class GetStream {
 
     public List<Stream> getAll() {
         return (List<Stream>) streamRepository.findAll();
+    }
+
+    public List<Stream> getBySource(Source source){
+        return streamRepository.findBySource(source);
+    }
+
+    public Long getTotalStream(){
+        return streamRepository.count();
     }
 
 }

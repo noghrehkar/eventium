@@ -13,7 +13,7 @@ public class CheckSocialAccountExist {
     @Autowired
     private SocialAccountRepository socialAccountRepository;
 
-    public boolean isSocialAccountExist(SocialAccount socialAccount) {
+    public boolean isSocialAccountExistBySourceAndUuid(SocialAccount socialAccount) {
         Optional<SocialAccount> foundSocialAccount = socialAccountRepository.findBySourceAndUuid(socialAccount.getSource(), socialAccount.getUuid());
         if (foundSocialAccount.isEmpty()) {
             return false;
