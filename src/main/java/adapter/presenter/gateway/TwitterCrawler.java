@@ -18,13 +18,17 @@ import java.util.Set;
 @Service
 public class TwitterCrawler  implements core.usecase.crawler.TwitterCrawler {
 
-   @Autowired
+    private final String QUERY_SOURCE="source:";
+
+    @Autowired
    CheckSocialAccountExist checkSocialAccountExist;
    @Autowired
    GetSource getSource;
 
    @Autowired
    CreateSocialAccount createSocialAccount;
+
+
 
     @Override
     public List<Post> crawl(Set<Keyword> keywords) throws TwitterException {
@@ -70,7 +74,7 @@ public class TwitterCrawler  implements core.usecase.crawler.TwitterCrawler {
     }
 
     private Query createQueryString(Set<Keyword> keywords){
-        String queryString="source:";
+        String queryString=QUERY_SOURCE;
         for (Keyword keyword:keywords) {
             queryString+=keyword.getText()+" ";
         }
