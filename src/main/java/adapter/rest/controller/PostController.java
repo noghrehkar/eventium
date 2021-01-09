@@ -1,4 +1,4 @@
-package adapter.presenter.rest.controller;
+package adapter.rest.controller;
 
 
 import adapter.presenter.presenter.PostJSONPresenter;

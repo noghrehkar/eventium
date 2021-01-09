@@ -25,7 +25,8 @@ public class GetSource {
         return sourceRepository.findById(id);
     }
 
-    public Source getByName(String name){
-        return sourceRepository.findByName(name).get();
+    public Optional<Source> getByName(String name) {
+            return sourceRepository.findByName(name);
+
     }
 }

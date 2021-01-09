@@ -1,4 +1,4 @@
-package adapter.presenter.view;
+package adapter.view;
 
 import core.entity.Post;
 import core.usecase.post.GetPost;

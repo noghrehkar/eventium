@@ -1,11 +1,11 @@
-package adapter.presenter.gateway;
+package adapter.gateway;
 
 
+import core.exception.SourceNotExist;
 import core.usecase.crawler.MainCrawler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import twitter4j.TwitterException;
 
 @Service
 public class ScheduledCrawl {
@@ -14,9 +14,9 @@ public class ScheduledCrawl {
     MainCrawler mainCrawler;
 
     @Scheduled(fixedDelay = 10000)
-    public void crawl() throws TwitterException {
+    public void crawl() throws  SourceNotExist {
 
-      //  mainCrawler.crawl();
+        mainCrawler.crawl();
     }
 
 }

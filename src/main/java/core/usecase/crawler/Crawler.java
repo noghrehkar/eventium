@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 public interface Crawler {
-    List<Post> crawl(Set<Keyword> keywords) throws TwitterException;
+    List<Post> crawl(Set<Keyword> keywords) ;
     String getSourceName();
 
 

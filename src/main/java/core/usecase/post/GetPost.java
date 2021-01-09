@@ -51,4 +51,12 @@ public class GetPost {
         return postRepository.count();
     }
 
+    public Post getLatestPostBySource(Source source){
+        Sort sort=Sort.by(Sort.Direction.DESC, SORT_FIELD);
+
+        Pageable pageData=PageRequest.of(1,1, sort);
+        Page<Post> postPages = postRepository.findBySource(source,pageData);
+        return postPages.toList().get(0);
+    }
+
 }

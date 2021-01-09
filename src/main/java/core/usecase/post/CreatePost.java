@@ -44,8 +44,10 @@ public class CreatePost {
         List<Post> newCreatedPosts=new ArrayList<>();
         for (Post newPost:newPosts) {
             if(checkPostExist.isPostExistBySourceAndUuid(newPost)==false){
-                SocialAccount persistedSocialAccount = socialAccount.createSocialAccount(newPost.getSocialAccount());
-                newPost.setSocialAccount(persistedSocialAccount);
+                if(newPost.getSocialAccount()!=null) {
+                    SocialAccount persistedSocialAccount = socialAccount.createSocialAccount(newPost.getSocialAccount());
+                    newPost.setSocialAccount(persistedSocialAccount);
+                }
                 newPost.getStreams().add(stream);
                 Post createdPost = postRepository.save(newPost);
                 newCreatedPosts.add(createdPost);
