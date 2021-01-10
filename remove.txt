@@ -1,1 +1,1 @@
-***REMOVED***
+newsapi.apikey=c6511c25111240eab190d6e571c681cf
