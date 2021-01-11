@@ -65,7 +65,11 @@ public class NewsAPICrawler implements core.usecase.crawler.NewsAPICrawler {
             post.setKeywords(new HashSet<>());
             post.getKeywords().addAll(keywords);
             post.setBody(article.getContent());
-            post.setUuid(article.getUrl().substring(0,255));
+            if(article.getUrl().length()>255){
+                post.setUuid(article.getUrl().substring(0,255));
+            }else{
+                post.setUuid(article.getUrl());
+            }
             post.setSocialAccount(null);
             post.setStreams(new HashSet<>());
             posts.add(post);

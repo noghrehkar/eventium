@@ -13,7 +13,7 @@ public class ScheduledCrawl {
     @Autowired
     MainCrawler mainCrawler;
 
-    @Scheduled(fixedDelay = 10000)
+    @Scheduled(fixedDelay = 864000000)
     public void crawl() throws  SourceNotExist {
 
         mainCrawler.crawl();
